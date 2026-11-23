@@ -1,0 +1,1 @@
+Place optional .glb or .gltf architectural models here. Example: ?model=assets/models/room.glb&units=real
