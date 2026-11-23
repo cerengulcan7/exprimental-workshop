@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#131e27">
+  <meta name="description" content="Static, hands-only Meta Quest 3 WebXR locomotion at 1:70 architectural model scale.">
+  <title>SCALE / 70 · WebXR Hand Locomotion</title>
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <div id="scene" aria-label="3D architectural model viewer"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">S<span class="brand-slash">/</span>70</span><span class="brand-divider"></span><span class="brand-sub">SPATIAL EXPLORATION<br>HAND-TRACKED LOCOMOTION</span></div>
+    <div class="top-pill"><span class="status-dot" id="mode-dot"></span><span id="mode-label">DESKTOP VIEW</span></div>
+  </header>
+
+  <main class="ui">
+    <section class="hero" aria-label="Project overview">
+      <span class="eyebrow">WEBXR × QUEST 3 × THREE.JS</span>
+      <h1>Enter the<br><em>model.</em></h1>
+      <p>Architectural space at 1:70. Full human-scale perspective. Move through the model with just your hands.</p>
+      <div class="actions">
+        <button class="btn btn-primary" id="enter-vr" type="button"><span class="button-symbol">◉</span> ENTER VR</button>
+        <button class="btn btn-secondary" id="start-camera" type="button">◌ START CAMERA</button>
+        <button class="btn btn-secondary" id="stop-camera" type="button" disabled>■ STOP CAMERA</button>
+        <button class="btn btn-secondary" id="reset-position" type="button">↺ RESET POSITION</button>
+      </div>
+      <p class="microcopy" id="support-text">Checking XR support…</p>
+      <div class="gesture-guide">
+        <span class="guide-title">GESTURE LANGUAGE <span> / BOTH MODES</span></span>
+        <div class="gesture"><span class="gesture-number">01</span><span class="gesture-visual">☝ + 👍</span><span>INDEX + THUMB</span><strong>WALK</strong></div>
+        <div class="gesture"><span class="gesture-number">02</span><span class="gesture-visual">🤙</span><span>PINKY + THUMB</span><strong>TURN RIGHT</strong></div>
+        <div class="gesture"><span class="gesture-number">03</span><span class="gesture-visual">✋</span><span>RING + THUMB</span><strong>TURN LEFT</strong></div>
+        <p class="guide-note">Release = immediate stop. Move your head to choose walking direction.<br>Desktop without camera: W / A / D or arrow keys · drag to look.</p>
+      </div>
+    </section>
+
+    <aside class="right-panel" aria-label="Tracking and diagnostics">
+      <div class="preview" id="preview" hidden>
+        <video id="camera-video" autoplay muted playsinline></video>
+        <canvas id="landmarks"></canvas>
+        <span class="preview-label">● LIVE HAND LANDMARKS</span>
+      </div>
+      <div class="debug-panel">
+        <div class="panel-heading"><span>LIVE TELEMETRY</span><span class="panel-mark">SYS.01</span></div>
+        <div class="debug-row"><span>XR SESSION</span><b id="debug-xr">Inactive</b></div>
+        <div class="debug-row"><span>HAND TRACKING</span><b id="debug-tracking">Off</b></div>
+        <div class="debug-row"><span>ACTIVE HAND</span><b id="debug-hand">—</b></div>
+        <div class="debug-row"><span>ACTIVE PINCH</span><b id="debug-pinch">—</b></div>
+        <div class="debug-row debug-action"><span>MOTION</span><b id="debug-action">STOPPED</b></div>
+        <div class="debug-row"><span>WALK SPEED</span><b id="debug-walk">0.00 m/s</b></div>
+        <div class="debug-row"><span>ROTATION</span><b id="debug-rotation">0.0 °/s</b></div>
+        <div class="debug-row"><span>SCALE</span><b>1:70</b></div>
+        <div class="debug-row"><span>HEAD REFERENCE</span><b id="debug-reference">Desktop</b></div>
+        <div class="debug-row"><span>FPS</span><b id="debug-fps">—</b></div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <footer class="footer"><span>HEAD TRACKING IS PRESERVED 1:1</span><span>01 MODEL UNIT = 1 METRE IN MINIATURE COORDINATES</span></footer>
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
